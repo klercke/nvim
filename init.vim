@@ -2,8 +2,50 @@
 " Author: @klercke
 " Updated: 2023-11-08
 
+" Credits:
+" Initially based on https://github.com/theniceboy/nvim
+
+" === Auto install plugins ===
+" Install vim-plug if it isn't already installed
+if has('win32') || has('win64')
+	" Windows
+	if empty(glob('$LOCALAPPDATA\nvim\autoload\plug.vim'))
+  	silent ! powershell -Command "
+  	\   New-Item -Path ~\AppData\Local\nvim -Name autoload -Type Directory -Force;
+  	\   Invoke-WebRequest
+  	\   -Uri 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  	\   -OutFile ~\AppData\Local\nvim\autoload\plug.vim
+		\ "
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+	endif
+else
+	" *nix
+	let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+	if empty(glob(data_dir . '/autoload/plug.vim'))
+  	silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  	autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+	endif
+endif
+
+" Check if all plugins are installed. If not, install them (we check wildfire
+" because it alphabetically the last plugin ((I think))
+let g:nvim_plugins_installation_completed=1
+if has('win32') || has('win64')
+	" Windows
+	if empty(glob('$LOCALAPPDATA\nvim-data\plugged\wildfire.vim\autoload\wildfire.vim'))
+		let g:nvim_plugins_installation_complete=0
+		autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+	endif
+else 
+	" Unix
+	if empty(glob($HOME.'/.config/nvim/plugged/wildfire.vim/autoload/wildfire.vim'))
+		let g:nvim_plugins_installation_completed=0
+		autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+	endif
+endif
+
 " === Colemak Movement ===
-"	^
+"			^
 "    	e
 " < h	*   i > 
 "    	n
@@ -43,6 +85,15 @@ set visualbell
 
 " Set tab width to two spaces
 set tabstop=2
+set shiftwidth=2
 
 " Enable filetype detection, plugin, and indentation
 filetype plugin indent on
+
+" === Plugins ===
+call plug#begin()
+
+" Editor enhancement
+Plug 'gcmt/wildfire.vim' " in Visual mode, type k' to select all text in '', or type k) k] k} kp
+
+call plug#end()
