@@ -126,7 +126,9 @@ colorscheme nord
 
 " lualine
 lua << EOF
-require('lualine').setup()
+require('lualine').setup{
+	options = { theme = 'nord' }
+}
 EOF
 
 " suda
