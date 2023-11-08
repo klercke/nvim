@@ -90,10 +90,54 @@ set shiftwidth=2
 " Enable filetype detection, plugin, and indentation
 filetype plugin indent on
 
+" Set status line to always show
+set laststatus=2
+
+" Set 24-bit colors for colorschemes to work
+set tgc
+
 " === Plugins ===
 call plug#begin()
 
 " Editor enhancement
-Plug 'gcmt/wildfire.vim' " in Visual mode, type k' to select all text in '', or type k) k] k} kp
+Plug 'gcmt/wildfire.vim' " in Visual mode, type k' to select all text in '', or type k) k] k} kp (not configured yet)
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
+" Eye candy
+Plug 'nvim-lualine/lualine.nvim'
+Plug 'nvim-tree/nvim-web-devicons'
+Plug 'gbprod/nord.nvim'
+
+" Git
+Plug 'tpope/vim-fugitive'
+
+" Completion
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+" Misc
+Plug 'lambdalisue/suda.vim' " On Windows, requires https://github.com/gerardog/gsudo
 
 call plug#end()
+
+" === Plugin Config ===
+
+" Nord
+colorscheme nord
+
+" lualine
+lua << EOF
+require('lualine').setup()
+EOF
+
+" suda
+let g:suda_smart_edit = 1
+
+" nvim-treesitter
+lua << EOF
+require 'nvim-treesitter.configs'.setup {
+	ensure_installed = { "python", "lua", "vim", "vimdoc", "rust" },
+	auto_install = false,
+}
+EOF
+autocmd FileType vim lua vim.treesitter.start()
+
