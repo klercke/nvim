@@ -1,1 +1,1 @@
-# My NVIM config
+# My (cross-platform) NVIM config
