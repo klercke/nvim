@@ -20,8 +20,7 @@ if has('win32') || has('win64')
 	endif
 else
 	" *nix
-	let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
-	if empty(glob(data_dir . '/autoload/plug.vim'))
+	if empty(glob('~/.config/nvim/autoload/plug.vim'))
   	silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
   	autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 	endif
@@ -38,7 +37,7 @@ if has('win32') || has('win64')
 	endif
 else 
 	" Unix
-	if empty(glob($HOME.'/.config/nvim/plugged/wildfire.vim/autoload/wildfire.vim'))
+	if empty(glob('~/.local/share/nvim/plugged/wildfire.vim'))
 		let g:nvim_plugins_installation_completed=0
 		autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 	endif
