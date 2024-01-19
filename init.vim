@@ -53,6 +53,12 @@ noremap <silent> n j
 noremap <silent> e k
 noremap <silent> i l
 
+" Window movement
+noremap <C-h> <C-w>h
+noremap <C-n> <C-w>j
+noremap <C-e> <C-w>k
+noremap <C-i> <C-w>l
+
 " === Basic Keybinds ===
 " Comma as leader
 let mapleader=","
