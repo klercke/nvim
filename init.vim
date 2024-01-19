@@ -101,6 +101,10 @@ set laststatus=2
 " Set 24-bit colors for colorschemes to work
 set tgc
 
+" Open splits to the bottom and to the right
+set splitbelow
+set splitright
+
 " === Plugins ===
 call plug#begin()
 
