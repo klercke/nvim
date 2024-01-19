@@ -101,6 +101,7 @@ call plug#begin()
 " Editor enhancement
 Plug 'gcmt/wildfire.vim' " in Visual mode, type k' to select all text in '', or type k) k] k} kp (not configured yet)
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'norcalli/nvim-colorizer.lua'
 
 " Eye candy
 Plug 'nvim-lualine/lualine.nvim'
@@ -112,6 +113,9 @@ Plug 'tpope/vim-fugitive'
 
 " Completion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+" Terraform
+Plug 'hashivim/vim-terraform'
 
 " Misc
 Plug 'lambdalisue/suda.vim' " On Windows, requires https://github.com/gerardog/gsudo
@@ -136,9 +140,17 @@ let g:suda_smart_edit = 1
 " nvim-treesitter
 lua << EOF
 require 'nvim-treesitter.configs'.setup {
-	ensure_installed = { "python", "lua", "vim", "vimdoc", "rust" },
+	ensure_installed = { "python", "lua", "vim", "vimdoc", "rust", "hcl" },
 	auto_install = false,
 }
 EOF
 autocmd FileType vim lua vim.treesitter.start()
 
+" Auto-fmt Terraform using vim-terraform
+augroup TERRAFORMFMT
+    autocmd!
+    autocmd BufWritePost *.tf exec ":Terraform fmt"
+augroup END
+
+" Colorizer
+lua require'colorizer'.setup()
