@@ -78,6 +78,11 @@ augroup END
 noremap l i
 noremap L I
 
+" Other Colemak fixes
+noremap k n
+noremap K N
+noremap f e 
+
 " hh -> esc
 imap hh <Esc>
 
@@ -163,4 +168,11 @@ augroup TERRAFORMFMT
 augroup END
 
 " Colorizer
-lua require'colorizer'.setup()
+lua << EOF
+require 'colorizer'.setup ({
+	filetypes = { "*" },
+	options = {
+		names = false
+	}
+})
+EOF
