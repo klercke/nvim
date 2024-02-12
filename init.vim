@@ -110,6 +110,10 @@ set tgc
 set splitbelow
 set splitright
 
+" Smart case sensitivity in searches
+set ignorecase
+set smartcase
+
 " === Plugins ===
 call plug#begin()
 
