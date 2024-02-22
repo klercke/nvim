@@ -115,6 +115,9 @@ set splitright
 set ignorecase
 set smartcase
 
+" Enable spellcheck in certain files
+autocmd BufNewFile,BufRead *.md,*.txt setlocal spell
+
 " === Plugins ===
 call plug#begin()
 
@@ -136,6 +139,10 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Terraform
 Plug 'hashivim/vim-terraform'
+
+" Markdown
+Plug 'godlygeek/tabular'
+Plug 'preservim/vim-markdown' 
 
 " Misc
 Plug 'lambdalisue/suda.vim' " On Windows, requires https://github.com/gerardog/gsudo
@@ -181,3 +188,11 @@ require 'colorizer'.setup ({
 	}
 })
 EOF
+
+" vim-markdown
+let g:vim_markdown_folding_disabled = 1
+"let g:vim_markdown_folding_level = 2
+let g:vim_markdown_toc_autofit = 1
+let g:vim_markdown_frontmatter = 1
+let g:vim_markdown_strikethrough = 1
+let g:vim_markdown_new_list_item_indent = 2
