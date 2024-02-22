@@ -96,6 +96,7 @@ set visualbell
 " Set tab width to two spaces
 set tabstop=2
 set shiftwidth=2
+set expandtab
 
 " Enable filetype detection, plugin, and indentation
 filetype plugin indent on
