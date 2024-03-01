@@ -88,6 +88,7 @@ imap hh <Esc>
 
 " Auto-pair symbols
 inoremap { {}<Esc>ha
+inoremap {<CR> {<CR>}<Esc>ko
 inoremap ( ()<Esc>ha
 inoremap [ []<Esc>ha
 inoremap " ""<Esc>ha
