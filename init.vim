@@ -86,6 +86,13 @@ noremap f e
 " hh -> esc
 imap hh <Esc>
 
+" Auto-pair symbols
+inoremap { {}<Esc>ha
+inoremap ( ()<Esc>ha
+inoremap [ []<Esc>ha
+inoremap " ""<Esc>ha
+inoremap ' ''<Esc>ha
+
 " === Editor Settings
 " Hybrid line numbers
 set number relativenumber
