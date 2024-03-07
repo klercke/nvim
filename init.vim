@@ -86,14 +86,6 @@ noremap f e
 " hh -> esc
 imap hh <Esc>
 
-" Auto-pair symbols
-inoremap { {}<Esc>ha
-inoremap {<CR> {<CR>}<Esc>ko
-inoremap ( ()<Esc>ha
-inoremap [ []<Esc>ha
-inoremap " ""<Esc>ha
-inoremap ' ''<Esc>ha
-
 " === Editor Settings
 " Hybrid line numbers
 set number relativenumber
@@ -133,6 +125,7 @@ call plug#begin()
 Plug 'gcmt/wildfire.vim' " in Visual mode, type k' to select all text in '', or type k) k] k} kp (not configured yet)
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'norcalli/nvim-colorizer.lua'
+Plug 'cohama/lexima.vim'
 
 " Eye candy
 Plug 'nvim-lualine/lualine.nvim'
@@ -204,3 +197,6 @@ let g:vim_markdown_toc_autofit = 1
 let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_strikethrough = 1
 let g:vim_markdown_new_list_item_indent = 2
+
+" lexima
+let g:lexima_enable_basic_rules = 1
