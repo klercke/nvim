@@ -54,10 +54,10 @@ noremap <silent> e k
 noremap <silent> i l
 
 " Window movement
-noremap <C-h> <C-w>h
-noremap <C-n> <C-w>j
-noremap <C-e> <C-w>k
-noremap <C-i> <C-w>l
+nnoremap <C-h> <C-w>h
+nnoremap <C-n> <C-w>j
+nnoremap <C-e> <C-w>k
+nnoremap <C-i> <C-w>l
 
 " === Basic Keybinds ===
 " Comma as leader
@@ -200,3 +200,12 @@ let g:vim_markdown_new_list_item_indent = 2
 
 " lexima
 let g:lexima_enable_basic_rules = 1
+" Easy bold and italics for markdown
+call lexima#add_rule({'char': '*', 'input_after': '*', 'filetype': 'markdown'})
+call lexima#add_rule({'char': '*', 'at': '\*\%#', 'input': '*', 'input_after': '*', 'priority': 1, 'filetype': 'markdown'})
+call lexima#add_rule({'char': '*', 'at': '\*\*\%#', 'input': '*', 'input_after': '*', 'priority': 2, 'filetype': 'markdown'})
+call lexima#add_rule({'char': '*', 'at': '\%#\*', 'leave': 1, 'filetype': 'markdown'})
+call lexima#add_rule({'char': '*', 'at': '\%#\*\*', 'leave': 2, 'filetype': 'markdown'})
+call lexima#add_rule({'char': '*', 'at': '\%#\*\*\*', 'leave': 3, 'filetype': 'markdown'})
+call lexima#add_rule({'char': '<BS>', 'at': '\*\%#\*', 'delete': 1, 'filetype': 'markdown'})
+
