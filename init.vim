@@ -1,6 +1,5 @@
 " NVIM Config
 " Author: @klercke
-" Updated: 2023-11-08
 
 " Credits:
 " Initially based on https://github.com/theniceboy/nvim
@@ -118,6 +117,10 @@ set smartcase
 " Enable spellcheck in certain files
 autocmd BufNewFile,BufRead *.md,*.txt setlocal spell
 
+" === Custom commands ===
+" Insert datestring for Hugo
+command! Date :normal a<C-R>=strftime('%Y-%m-%dT%H:%M:%S%z')<CR>
+
 " === Plugins ===
 call plug#begin()
 
@@ -208,4 +211,5 @@ call lexima#add_rule({'char': '*', 'at': '\%#\*', 'leave': 1, 'filetype': 'markd
 call lexima#add_rule({'char': '*', 'at': '\%#\*\*', 'leave': 2, 'filetype': 'markdown'})
 call lexima#add_rule({'char': '*', 'at': '\%#\*\*\*', 'leave': 3, 'filetype': 'markdown'})
 call lexima#add_rule({'char': '<BS>', 'at': '\*\%#\*', 'delete': 1, 'filetype': 'markdown'})
+
 
