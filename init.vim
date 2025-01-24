@@ -137,6 +137,7 @@ Plug 'cohama/lexima.vim'
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'nvim-tree/nvim-web-devicons'
 Plug 'gbprod/nord.nvim'
+Plug 'ellisonleao/gruvbox.nvim'
 
 " Completion
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -171,15 +172,43 @@ call plug#end()
 
 " === Plugin Config ===
 
-" Nord
-colorscheme nord
+" Colorscheme
+lua << EOF
+-- detect os and set colorscheme accordingly
+local uname = vim.loop.os_uname().sysname:lower()
+
+if uname == "linux" then
+  -- check if it's nixos
+  local handle = io.popen("grep -q NixOS /etc/os-release && echo nixos || echo other-os")
+  local result = handle:read("*a")
+  handle:close()
+
+  if result:find("nixos") then
+    vim.cmd("colorscheme gruvbox")
+    require('lualine').setup {
+      options = { theme = 'gruvbox' }
+    }
+  else
+    vim.cmd("colorscheme nord")
+    require('lualine').setup {
+      options = { theme = 'nord' }
+    }
+  end
+else
+  vim.cmd("colorscheme nord") -- default to nord for non-linux systems
+  require('lualine').setup {
+    options = { theme = 'nord' }
+  }
+end
+EOF
+
 
 " lualine
-lua << EOF
-require('lualine').setup{
-	options = { theme = 'nord' }
-}
-EOF
+"lua << EOF
+"require('lualine').setup{
+"	options = { theme = 'nord' }
+"}
+"EOF
 
 " suda
 let g:suda_smart_edit = 1
